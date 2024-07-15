@@ -8,7 +8,7 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCuHXLB",
+  apiKey: "AIzaSyCuHXLBP",
   authDomain: "mini-ecommerce-4be43.firebaseapp.com",
   databaseURL:
     "https://mini-ecommerce-4be43-default-rtdb.europe-west1.firebasedatabase.app",

@@ -17,12 +17,12 @@ export const MainHeader = () => {
           className="-z-10 w-1/2 h-[420px]"
         />
         <div className="-mt-24 text-white text-lg font-semibold text-center px-96">
-          At STRINGLET, we believe that friendship is a treasure. Our
-          handmade bracelets are designed to celebrate and strengthen the bonds
-          you share with your loved ones. Wear your story, cherish the
-          connection.
+          At STRINGLET, we believe that friendship is a treasure. Our handmade
+          bracelets are designed to celebrate and strengthen the bonds you share
+          with your loved ones. Wear your story, cherish the connection.
         </div>
       </div>
+      <div className="w-full h-4 absolute -bottom-2 left-0 bg-gradient-to-b from-transparent to-60% to-[rgb(211,246,252)] z-20"></div>
     </div>
   );
 };
