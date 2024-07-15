@@ -1,17 +1,20 @@
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 export const NavBar = () => {
   return (
     <div className="w-full py-4 px-8 flex justify-between items-center">
-      <div className="z-50 text-3xl text-white font-anton font-extrabold">
+      <div className="z-50 md:text-3xl text-xl text-white font-anton font-extrabold">
         STRINGLET
       </div>
-      <div className="flex items-center justify-center gap-x-4">
-        <button className="text-sm font-semibold px-5 py-1.5 rounded-full text-white border-2 border-white">
+      <div className="flex items-center justify-center md:gap-x-4 gap-x-3">
+        <button className="md:text-sm text-xs font-semibold md:px-5 px-3 md:py-1.5 py-1 rounded-full text-white border-2 border-white hover:bg-white/20 transition-all duration-300">
           Login
         </button>
-        <div className="w-4 h-4 bg-white"></div>
+        <FontAwesomeIcon icon={faShoppingCart} className="md:w-5 w-4 text-white" />
       </div>
+      
     </div>
   );
 };
