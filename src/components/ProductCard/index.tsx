@@ -35,22 +35,12 @@ export const ProductCard = ({
       <div className="py-2 w-[360px] z-20 text-black">
         <div className="text-xl font-medium text-gray-700">{name}</div>
         <div className="text-sm font-medium text-gray-700">{description}</div>
-        <div className="w-full flex justify-center pt-3">
-          <button className="text-sm px-3 py-1 rounded-full border border-purple-900 text-purple-900 hover:bg-purple-100 transition-all duration-300">
-            Add To Cart
-          </button>
-        </div>
       </div>
-      {/* <div className="flex flex-col p-1 bg-white w-64 z-20 rounded">
-      <div className="w-full aspect-square bg-gray-300 rounded"></div>
-      <div className="flex justify-between items-center">
-        <div>name</div>
-        <div>19.99</div>
+      <div className="w-full flex justify-center pt-3 absolute bottom-8 z-40">
+        <button className="text-sm px-3 py-1 rounded-full border border-purple-900 text-purple-900 hover:bg-purple-100 transition-all duration-300">
+          Add To Cart
+        </button>
       </div>
-      <div className="">
-        Description DescriptionDesc riptionD escription
-      </div>
-    </div> */}
     </div>
   );
 };
