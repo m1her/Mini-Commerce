@@ -14,6 +14,7 @@ export const MainHeader = () => {
           alt={""}
           width={1000}
           height={1000}
+          priority={true}
           className="-z-10 w-1/2 h-[420px]"
         />
         <div className="-mt-24 text-white text-lg font-semibold text-center px-96">
