@@ -6,7 +6,7 @@ import React from "react";
 export const NavBar = () => {
   return (
     <div className="w-full py-4 px-8 flex justify-between items-center">
-      <div className="z-50 md:text-3xl text-xl text-white font-anton font-extrabold">
+      <div className="md:text-3xl text-xl text-white font-anton font-extrabold">
         STRINGLET
       </div>
       <div className="flex items-center justify-center md:gap-x-4 gap-x-3">
