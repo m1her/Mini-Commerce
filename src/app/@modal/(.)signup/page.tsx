@@ -1,12 +1,14 @@
 import Modal from "@/components/LoginModal";
-import { LoginFeat } from "@/features/Auth/Login";
+import { SignupFeat } from "@/features/Auth/Signup";
 import Link from "next/link";
 import React from "react";
 
-export default function Login() {
+const Signup = () => {
   return (
     <Modal>
-      <LoginFeat isModal={true} />
+      <SignupFeat isModal={true} />
     </Modal>
   );
-}
+};
+
+export default Signup;
