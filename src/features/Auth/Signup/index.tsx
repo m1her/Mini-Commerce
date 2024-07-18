@@ -63,7 +63,7 @@ export const SignupFeat = ({ isModal }: { isModal: boolean }) => {
           });
       }
     },
-    [signupData.email, signupData.password, router, validate]
+    [signupData.email, signupData.password, router, validate, isModal]
   );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

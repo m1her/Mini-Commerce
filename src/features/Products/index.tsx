@@ -1,7 +1,6 @@
 "use client";
 import { ProductsContext } from "@/components/DataProvider";
 import { ProductCard } from "@/components/ProductCard";
-// import { productsBgColors } from "@/Data/productsBgColors";
 import React, { useContext } from "react";
 
 
