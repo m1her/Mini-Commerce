@@ -1,7 +1,9 @@
 import Image from "next/image";
 import React from "react";
+import { AddToCartBtn } from "../AddToCartBtn";
 
 interface ProductCardTypes {
+  id: string;
   name: string;
   price: number;
   description: string;
@@ -11,6 +13,7 @@ interface ProductCardTypes {
 }
 
 export const ProductCard = ({
+  id,
   name,
   price,
   description,
@@ -37,9 +40,7 @@ export const ProductCard = ({
         <div className="text-sm font-medium text-gray-700">{description}</div>
       </div>
       <div className="w-full flex justify-center pt-3 absolute bottom-8 z-40">
-        <button className="text-sm px-3 py-1 rounded-full border border-purple-900 text-purple-900 hover:bg-purple-100 transition-all duration-300">
-          Add To Cart
-        </button>
+        <AddToCartBtn id={id} name={name} price={price} imgUrl={imgUrl} />
       </div>
     </div>
   );

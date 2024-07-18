@@ -3,16 +3,14 @@ import { ProductsContext } from "@/components/DataProvider";
 import { ProductCard } from "@/components/ProductCard";
 import React, { useContext } from "react";
 
-
 const productsBgColors = [
-    " shadow-[inset_0_0_250px_50px_rgba(34,144,113,1)] top-0",
-    " shadow-[inset_0_0_250px_50px_rgba(247,187,191,1)] -top-4 -right-10",
-    " shadow-[inset_0_0_250px_50px_rgba(151,251,63,1)] -top-16 -left-20 ",
-    " shadow-[inset_0_0_250px_50px_rgba(74,149,184,1)] top-0 right-0",
-    " shadow-[inset_0_0_250px_50px_rgba(251,98,10,1)] -top-40",
-  ];
+  " shadow-[inset_0_0_250px_50px_rgba(34,144,113,1)] top-0",
+  " shadow-[inset_0_0_250px_50px_rgba(247,187,191,1)] -top-4 -right-10",
+  " shadow-[inset_0_0_250px_50px_rgba(151,251,63,1)] -top-16 -left-20 ",
+  " shadow-[inset_0_0_250px_50px_rgba(74,149,184,1)] top-0 right-0",
+  " shadow-[inset_0_0_250px_50px_rgba(251,98,10,1)] -top-40",
+];
 
-  
 export const Products = () => {
   const data = useContext(ProductsContext);
 
@@ -22,6 +20,7 @@ export const Products = () => {
         {data.map((item, index) => (
           <ProductCard
             key={index}
+            id={item.id}
             name={item.name}
             price={item.price}
             description={item.description}
