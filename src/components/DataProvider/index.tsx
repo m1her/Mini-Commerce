@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import React, { createContext, useState, useEffect } from "react";
 
 interface DataContextTypes {
+  id: string;
   name: string;
   price: number;
   description: string;
@@ -24,6 +25,7 @@ const DataProvider = ({ children }: any) => {
       const docs = querySnapshot.docs.map(
         (doc) =>
           ({
+            id: doc.data().id,
             name: doc.data().name,
             price: doc.data().price,
             description: doc.data().description,

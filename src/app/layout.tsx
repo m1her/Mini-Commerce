@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { DataProvider } from "@/components/DataProvider";
+import { Providers } from "@/Redux/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {modal}
-        <DataProvider>{children}</DataProvider>
+        <Providers>
+          {modal}
+          <DataProvider>{children}</DataProvider>
+        </Providers>
       </body>
     </html>
   );
