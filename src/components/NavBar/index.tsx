@@ -1,7 +1,5 @@
 "use client";
 import { auth } from "@/Firebase/firebaseConfig";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import React from "react";
