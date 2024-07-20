@@ -1,16 +1,19 @@
-"use client";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
+import { RemoveBtn } from "./RemoveBtn";
+import { IncreaseOrDecrease } from "./IncreaseOrDecrease";
 
 export const CartTableRowItem = ({
+  id,
   imgUrl,
   name,
   quantity,
   price,
   totalPrice,
 }: {
+  id: string;
   imgUrl: string;
   name: string;
   quantity: number;
@@ -24,21 +27,20 @@ export const CartTableRowItem = ({
           <div className="w-20 aspect-square rounded bg-gray-300 relative overflow-hidden">
             <Image src={imgUrl} alt={""} fill sizes="75" />
           </div>
-          <div className="">{name}</div>
+          <div className="flex flex-col gap-y-1">
+            <div className="">{name}</div>
+            <RemoveBtn id={id} />
+          </div>
         </div>
       </td>
       <td className="pt-8 w-2/12">
-        <div className="flex items-center gap-x-2">
-          <FontAwesomeIcon icon={faMinus} className="w-4" />
-          <div>{quantity}</div>
-          <FontAwesomeIcon icon={faPlus} className="w-4" />
-        </div>
+        <IncreaseOrDecrease id={id} quantity={quantity} />
       </td>
       <td className="pt-8 w-2/12">
         <div>{price}</div>
       </td>
       <td className="pt-8 w-2/12">
-        <div>{totalPrice}</div>
+        <div>{Math.round(totalPrice * 100) / 100}</div>
       </td>
     </tr>
   );

@@ -1,13 +1,24 @@
 "use client";
 import { CartTableRowItem } from "@/components/CartTableRowItem";
-import { TextInput } from "@/components/Input";
 import { LogoLink } from "@/components/LogoLink";
+import { PromoCode } from "@/components/PromoCode";
+import { auth } from "@/Firebase/firebaseConfig";
 import { RootState } from "@/Redux/store";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+  const Vat = useSelector((state: RootState) => state.cart.vat);
   const items = useSelector((state: RootState) => state.cart.items);
+  const discount = useSelector((state: RootState) => state.cart.discount);
+  const TotalPrice = useSelector((state: RootState) => state.cart.totalAmount);
+  const TotalNumberOfItems = useSelector(
+    (state: RootState) => state.cart.totalNumberOfItems
+  );
   return (
     <div className="py-4 px-8 w-full flex justify-center items-center min-h-screen relative bg-gradient-to-tl from-cyan-400/90 via-violet-400/90 to-rose-200/90">
       <div className="mt-4 -mb-4 w-fit absolute top-4 left-8">
@@ -34,6 +45,7 @@ const Cart = () => {
               {items.map((item, idx) => (
                 <CartTableRowItem
                   key={idx}
+                  id={item.id}
                   imgUrl={item.imgUrl}
                   name={item.name}
                   quantity={item.quantity}
@@ -52,32 +64,36 @@ const Cart = () => {
           <hr className="my-6 h-[1px] border-t-0 bg-neutral-400" />
           <div className="flex flex-col gap-y-6">
             <div className="flex items-center justify-between text-neutral-700 font-semibold">
-              <div>Items(3)</div>
-              <div>234$</div>
+              <div>Items({TotalNumberOfItems})</div>
+              <div>{Math.round(TotalPrice * 100) / 100}$</div>
             </div>
             <div className="flex items-center justify-between text-neutral-700 font-semibold">
-              <div>Vat</div>
-              <div>20$</div>
+              <div className="text-sm">VAT</div>
+              <div>{Vat}$</div>
             </div>
-            <TextInput
-              id="promo-code"
-              name="promoCode"
-              type="text"
-              label="Promo Code"
-              placeholder="Enter your code"
-              labelStyle="mb-3 text-neutral-700 font-semibold"
-            />
-            <button className="text-white font-semibold text-sm h-10 py-2 px-4 text-center w-fit rounded bg-red-400 hover:bg-red-600 transition-colors duration-300">
-              APPLY
-            </button>
+            <PromoCode />
             <hr className="mt-4 mb-2 h-[1px] border-t-0 bg-neutral-400" />
             <div className="flex items-center justify-between text-neutral-700 font-semibold">
               <div>Total Cost</div>
-              <div>254$</div>
+              <div>
+                {Math.round((TotalPrice + Vat) * discount * 100) / 100}$
+              </div>
             </div>
-            <button className="text-white font-semibold text-sm h-10 py-2 text-center w-full rounded bg-blue-600 hover:bg-blue-700 transition-colors duration-300">
-              CHECHOUT
-            </button>
+            {user ? (
+              <button
+                className="text-white font-semibold text-sm h-10 py-2 text-center w-full rounded bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
+                onClick={() => router.push("/checkout")}
+              >
+                CHECHOUT
+              </button>
+            ) : (
+              <button
+                className="text-white font-semibold text-sm h-10 py-2 text-center w-full rounded bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
+                onClick={() => router.push("/login")}
+              >
+                LOGIN
+              </button>
+            )}
           </div>
         </div>
       </div>
