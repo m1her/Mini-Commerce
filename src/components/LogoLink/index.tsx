@@ -2,10 +2,10 @@
 import React from "react";
 import HardRedirect from "../HardRedirect";
 
-export const LogoLink = () => {
+export const LogoLink = ({ style }: { style?: string }) => {
   return (
     <div
-      className="md:text-3xl text-xl z-50 select-none -mt-4 mb-4 text-white font-anton font-extrabold cursor-pointer"
+      className={`md:text-3xl text-xl z-50 select-none -mt-4 mb-4 text-white font-anton font-extrabold cursor-pointer ${style}`}
       onClick={() => HardRedirect("/")}
     >
       STRINGLET
