@@ -24,7 +24,7 @@ interface RemovedItemType {
 
 const initialState: CartStateType = {
   items: [],
-  totalAmount: 0,
+  totalAmount: 100,
   totalNumberOfItems: 0,
   vat: 0,
   discount: 1,

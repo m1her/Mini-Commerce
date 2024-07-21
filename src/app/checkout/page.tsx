@@ -1,12 +1,27 @@
 "use client";
 import { TextInput } from "@/components/Input";
 import { LogoLink } from "@/components/LogoLink";
+import { RootState } from "@/Redux/store";
 import { object } from "@/utilities/validation";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import { useSelector } from "react-redux";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import convertToSubcurrency from "@/utilities/convertToSubcurrency";
+import CheckoutPage from "@/components/CheckoutPage";
+
+if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
+  throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
+}
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const Checkout = () => {
+  const amount = 49.99;
+  const Vat = useSelector((state: RootState) => state.cart.vat);
+  const discount = useSelector((state: RootState) => state.cart.discount);
+  const TotalPrice = useSelector((state: RootState) => state.cart.totalAmount);
   const [checkoutData, setCheckoutData] = useState<{ [k: string]: string }>({
     fname: "",
     lname: "",
@@ -74,11 +89,10 @@ const Checkout = () => {
   };
   return (
     <div className="w-full min-h-screen px-8 py-4 bg-gray-100 flex flex-col gap-y-4">
-      <LogoLink style="inline-block text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 via-violet-400 to-rose-200 !m-0" />
-      <form
-        onSubmit={checkoutAction}
-        className="w-full h-full grid grid-cols-3 gap-x-4"
-      >
+      <div>
+        <LogoLink style="inline-block !text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 via-violet-400 to-rose-200 !m-0" />
+      </div>
+      <div className="w-full h-full grid grid-cols-3 gap-x-4">
         <div className="p-4 pb-8 w-full h-full flex flex-col gap-y-6 col-span-2 bg-white rounded shadow-[0_0_10px_5px_rgba(0,0,0,0.1)]">
           <div className="font-anton font-semibold text-lg">
             Delivery Details
@@ -215,26 +229,22 @@ const Checkout = () => {
 
         <div className="p-4 w-full h-full flex flex-col gap-y-6 col-span-1 bg-white rounded shadow-[0_0_10px_5px_rgba(0,0,0,0.1)]">
           <div className="font-anton font-semibold text-lg">Payment</div>
-          <div className="flex flex-col gap-y-4">
-            <div className="w-full">
-              <label htmlFor="card-element" className="text-sm">
-                Credit or Debit Card
-              </label>
-              <div id="card-element" className="border rounded p-2">
-                {/* Stripe Card Element will be inserted here */}
-                {/* Add Stripe Card Element component here */}
-              </div>
-            </div>
-            <button
-              className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-              type="submit"
-              // Add onClick handler here to handle form submission
-            >
-              Pay Now
-            </button>
-          </div>
+          <Elements
+            stripe={stripePromise}
+            options={{
+              mode: "payment",
+              amount: convertToSubcurrency(
+                Math.round((TotalPrice + Vat) * discount * 100) / 100
+              ),
+              currency: "usd",
+            }}
+          >
+            <CheckoutPage
+              amount={Math.round((TotalPrice + Vat) * discount * 100) / 100}
+            />
+          </Elements>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

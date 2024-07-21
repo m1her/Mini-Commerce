@@ -82,6 +82,7 @@ const Cart = () => {
             {user ? (
               <button
                 className="text-white font-semibold text-sm h-10 py-2 text-center w-full rounded bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
+                disabled={TotalPrice <= 0}
                 onClick={() => router.push("/checkout")}
               >
                 CHECHOUT
