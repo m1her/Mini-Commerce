@@ -16,7 +16,7 @@ export const Products = () => {
 
   return (
     <div className="w-full overflow-hidden min-h-screen py-4 px-8 bg-gradient-to-b from-cyan-400/20 via-violet-400/20 to-rose-200/20">
-      <div className="grid grid-cols-2 py-10 gap-y-20">
+      <div className="lg:grid flex flex-col grid-cols-2 py-10 gap-y-20">
         {data.map((item, index) => (
           <ProductCard
             key={index}
