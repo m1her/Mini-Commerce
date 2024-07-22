@@ -17,7 +17,7 @@ export const MainHeader = () => {
           priority={true}
           className="-z-10 w-1/2 h-[420px]"
         />
-        <div className="-mt-24 text-white text-lg font-semibold text-center px-96">
+        <div className="-mt-24 text-white md:text-lg text-base font-semibold text-center max-w-screen-md px-8">
           At STRINGLET, we believe that friendship is a treasure. Our handmade
           bracelets are designed to celebrate and strengthen the bonds you share
           with your loved ones. Wear your story, cherish the connection.
